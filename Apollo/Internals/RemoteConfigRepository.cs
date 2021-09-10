@@ -122,7 +122,7 @@ namespace Com.Ctrip.Framework.Apollo.Internals
                 {
                     url = AssembleQueryConfigUrl(configService.HomepageUrl, appId, cluster, Namespace, dataCenter, _remoteMessages!, _configCache!);
 
-                    Logger().Debug($"Loading config from {url}");
+                    Logger().Debug($"■ 【获取配置】Loading config from {url}");
 
                     try
                     {
@@ -135,8 +135,7 @@ namespace Com.Ctrip.Framework.Apollo.Internals
                         }
 
                         var result = response.Body;
-
-                        Logger().Debug($"Loaded config for {Namespace}: {result?.Configurations?.Count ?? 0}");
+                        Logger().Debug($"■ 【获取配置-有更新】Loaded config for {Namespace}: {result?.Configurations?.Count ?? 0}");
 
                         return result;
                     }

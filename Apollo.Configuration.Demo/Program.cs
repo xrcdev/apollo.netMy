@@ -1,5 +1,8 @@
 ﻿using Com.Ctrip.Framework.Apollo.ConfigAdapter;
 using Com.Ctrip.Framework.Apollo.Logging;
+
+using Microsoft.Extensions.Primitives;
+
 using System;
 
 namespace Apollo.Configuration.Demo
@@ -10,12 +13,14 @@ namespace Apollo.Configuration.Demo
         {
             LogManager.UseConsoleLogging(LogLevel.Trace);
 
-            YamlConfigAdapter.Register();
+            //YamlConfigAdapter.Register();
 
             var demo = new ConfigurationDemo();
 
             Console.WriteLine("Apollo Config Demo. Please input key to get the value. Input quit to exit.");
-            while (true)
+           
+
+                while (true)
             {
                 Console.Write("> ");
                 var input = Console.ReadLine();

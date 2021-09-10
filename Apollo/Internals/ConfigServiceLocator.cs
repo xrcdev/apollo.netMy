@@ -4,6 +4,7 @@ using Com.Ctrip.Framework.Apollo.Exceptions;
 using Com.Ctrip.Framework.Apollo.Logging;
 using Com.Ctrip.Framework.Apollo.Util;
 using Com.Ctrip.Framework.Apollo.Util.Http;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,6 +65,10 @@ namespace Com.Ctrip.Framework.Apollo.Internals
             return services;
         }
 
+        /// <summary>
+        /// timer 定时调用; 构造函数中启用 _configServices
+        /// </summary>
+        /// <param name="_"></param>
         private async void SchedulePeriodicRefresh(object _)
         {
             try
@@ -94,6 +99,12 @@ namespace Com.Ctrip.Framework.Apollo.Internals
             return task;
         }
 
+        /// <summary>
+        /// 更新 _configServices 配置
+        /// 多次尝试都失败后抛出异常 Get config services failed from {url}
+        /// </summary>
+        /// <param name="times">尝试次数</param>
+        /// <returns></returns>
         private async Task UpdateConfigServices(int times)
         {
             var url = AssembleMetaServiceUrl();
@@ -139,7 +150,7 @@ namespace Com.Ctrip.Framework.Apollo.Internals
 
                 var uriBuilder = new UriBuilder(uri + "services/config");
 
-                var query = new Dictionary<string, string> {["appId"] = _options.AppId};
+                var query = new Dictionary<string, string> { ["appId"] = _options.AppId };
 
                 if (!string.IsNullOrEmpty(_options.LocalIp)) query["ip"] = _options.LocalIp;
 

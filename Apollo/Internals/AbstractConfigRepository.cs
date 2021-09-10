@@ -1,11 +1,15 @@
 ﻿using Com.Ctrip.Framework.Apollo.Core.Utils;
 using Com.Ctrip.Framework.Apollo.Logging;
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Com.Ctrip.Framework.Apollo.Internals
 {
+    /// <summary>
+    /// AbstractConfigRepository 一个对应一个 namespace
+    /// </summary>
     public abstract class AbstractConfigRepository : IConfigRepository
     {
         private static readonly Func<Action<LogLevel, string, Exception?>> Logger = () => LogManager.CreateLogger(typeof(AbstractConfigRepository));

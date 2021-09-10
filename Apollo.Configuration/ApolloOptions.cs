@@ -1,6 +1,7 @@
 ﻿using Com.Ctrip.Framework.Apollo.Core;
 using Com.Ctrip.Framework.Apollo.Enums;
 using Com.Ctrip.Framework.Apollo.Foundation;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -78,10 +79,10 @@ namespace Com.Ctrip.Framework.Apollo
 
         public IReadOnlyCollection<string>? ConfigServer { get; set; }
 
-        /// <summary>ms. Default 5000ms</summary>
+        /// <summary>网络请求等待时间 ms. Default 5000ms</summary>
         public virtual int Timeout { get; set; } = 5000; //5 secondss
 
-        /// <summary>ms. Default 300,000ms</summary>
+        /// <summary>多久从服务器拉取配置更新 ,必须 大于 Timeout ,否则否则http链接可能会用完 ms. Default 300,000ms</summary>
         public virtual int RefreshInterval { get; set; } = 5 * 60 * 1000; //5 minutes
 
         public string? LocalCacheDir { get; set; }

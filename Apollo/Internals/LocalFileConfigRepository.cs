@@ -16,6 +16,9 @@ namespace Com.Ctrip.Framework.Apollo.Internals
         private const string ConfigDir = "config-cache";
 
         private string? _baseDir;
+        /// <summary>
+        /// 某个命名空间下的 配置大全
+        /// </summary>
         private volatile Properties? _fileProperties;
 
         private readonly IApolloOptions _options;
@@ -121,6 +124,10 @@ namespace Com.Ctrip.Framework.Apollo.Internals
             FireRepositoryChange(namespaceName, GetConfig());
         }
 
+        /// <summary>
+        /// 更新本地配置文件
+        /// </summary>
+        /// <param name="newProperties"></param>
         private void UpdateFileProperties(Properties newProperties)
         {
             if (_baseDir == null) return;

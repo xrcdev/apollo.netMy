@@ -12,6 +12,9 @@ namespace Com.Ctrip.Framework.Apollo.Core.Dto
 
         public string ReleaseKey { get; set; } = default!;
 
+        /// <summary>
+        /// Apollo上 ,配置的键值对 
+        /// </summary>
         public IDictionary<string, string>? Configurations { get; set; }
 
         public override string ToString() => $"ApolloConfig{{appId='{AppId}{'\''}, cluster='{Cluster}{'\''}, namespaceName='{NamespaceName}{'\''}, configurations={Configurations}, releaseKey='{ReleaseKey}{'\''}{'}'}";

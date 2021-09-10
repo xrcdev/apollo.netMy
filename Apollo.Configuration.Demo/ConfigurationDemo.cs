@@ -1,9 +1,13 @@
 ﻿using Com.Ctrip.Framework.Apollo;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Primitives;
+
 using Newtonsoft.Json;
+
 using System;
 
 namespace Apollo.Configuration.Demo
@@ -30,6 +34,10 @@ namespace Apollo.Configuration.Demo
                   .Build();
 
             _config = host.Services.GetRequiredService<IConfiguration>();
+            ChangeToken.OnChange(() => _config.GetReloadToken(), () =>
+            {
+                Console.WriteLine($"★{_config.GetReloadToken().GetHashCode()}");
+            });
             _anotherConfig = _config.GetSection("a");
 
             var optionsMonitor = host.Services.GetService<IOptionsMonitor<Value>>();
@@ -38,6 +46,7 @@ namespace Apollo.Configuration.Demo
 
             //new ConfigurationManagerDemo( host.Services.GetService<ApolloConfigurationManager>());
         }
+
 
         public string GetConfig(string key)
         {

@@ -6,8 +6,10 @@ using Com.Ctrip.Framework.Apollo.Exceptions;
 using Com.Ctrip.Framework.Apollo.Logging;
 using Com.Ctrip.Framework.Apollo.Util;
 using Com.Ctrip.Framework.Apollo.Util.Http;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -89,7 +91,7 @@ namespace Com.Ctrip.Framework.Apollo.Internals
 
                     url = AssembleLongPollRefreshUrl(lastServiceDto.HomepageUrl, appId, cluster, dataCenter);
 
-                    Logger().Debug($"Long polling from {url}");
+                    Logger().Debug($"▲ 【轮询-获取通知更新】Long polling from {url}");
 #if NET40
                     var response = await _httpUtil.DoGetAsync<ICollection<ApolloConfigNotification>>(url, 600000).ConfigureAwait(false);
 #else
@@ -98,6 +100,11 @@ namespace Com.Ctrip.Framework.Apollo.Internals
                     Logger().Debug($"Long polling response: {response.StatusCode}, url: {url}");
                     if (response.StatusCode == HttpStatusCode.OK && response.Body != null)
                     {
+                        foreach (var item in response.Body)
+                        {
+                            Logger().Debug($"▲ 【轮询-获取通知更新-有更新】 {item.NotificationId}");
+                        }
+
                         UpdateNotifications(response.Body);
                         UpdateRemoteNotifications(response.Body);
                         Notify(lastServiceDto, response.Body);

@@ -13,11 +13,10 @@ namespace Com.Ctrip.Framework.Apollo
 
         public static IOpenApiFactory Factory { get; } = new OpenApiFactory(new OpenApiOptions
         {
-            PortalUrl = new Uri("http://106.54.227.205:8070"),
-            Token = "19419f7d3e5a1b0b0cfe3e238b36e09718fb8e94"
+            PortalUrl = new Uri("http://192.168.4.12:8070/"),
         });
 
-        public static IReadOnlyList<string> AppIds = new List<string> { "apollo-client", "apollo-demo" };
+        public static IReadOnlyList<string> AppIds = new List<string> { "UUPT-Common" };
 
         public static string Env => "DEV";
 

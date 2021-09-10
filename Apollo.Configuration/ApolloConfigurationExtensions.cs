@@ -3,6 +3,7 @@ using Com.Ctrip.Framework.Apollo.Core;
 using Com.Ctrip.Framework.Apollo.Enums;
 using Com.Ctrip.Framework.Apollo.Internals;
 using Com.Ctrip.Framework.Apollo.Spi;
+
 using System;
 using System.Linq;
 
@@ -11,6 +12,12 @@ namespace Microsoft.Extensions.Configuration
 {
     public static class ApolloConfigurationExtensions
     {
+        /// <summary>
+        /// apolloConfiguration.Get<ApolloOptions> 从配置集合中获取 到配置对象 ApolloOptions
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="apolloConfiguration"> ConfigurationRoot </param>
+        /// <returns></returns>
         public static IApolloConfigurationBuilder AddApollo(this IConfigurationBuilder builder, IConfiguration apolloConfiguration) =>
             builder.AddApollo(apolloConfiguration.Get<ApolloOptions>());
 
