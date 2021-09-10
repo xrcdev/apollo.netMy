@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Com.Ctrip.Framework.Apollo.Configuration</AssemblyName>
+    <PackageReleaseNotes>2.4.1:
+    1. 支持从配置中读取apollo namespace（key apollo:Namespaces，值为数组，后面优先）
+2.4.0:
+    1. 添加apollo 1.6访问密钥
+2.3.0:
+    1. 添加ICacheFileProvider支持自定义配置缓存方式（比如本地加密存储）
+2.2.0:
+    1. 使用C# 8、添加nullable
+2.1.0:
+    1. 无
+2.0.2:
+    1. 使用新方法获取Properties里的值
+2.0.1:
+    1. 过滤重复的Namespace（后面添加的为准）
+2.0.0:
+    1. 支持添加namespace时指定格式
+    2. 支持通过Env读取metaserver</PackageReleaseNotes>
+    <Description>携程Apollo客户端
+
+　　与Microsoft.Extensions.Configuration集成请使用Com.Ctrip.Framework.Apollo.Configuration包
+　　与System.Configuration.ConfigurationManager集成(.net 4.7.1及以后版本)请使用Com.Ctrip.Framework.Apollo.ConfigurationManager包
+　　直接使用ApolloConfigurationManager请使用Com.Ctrip.Framework.Apollo.Configuration或者Com.Ctrip.Framework.Apollo.ConfigurationManager
+
+$(PackageReleaseNotes)</Description>
+    <PackageIconUrl>https://raw.githubusercontent.com/ctripcorp/apollo/master/apollo-portal/src/main/resources/static/img/config.png</PackageIconUrl>
+    <PackageProjectUrl>$(RepositoryUrl)/$(MSBuildProjectName)</PackageProjectUrl>
+    <RootNamespace>Com.Ctrip.Framework.Apollo</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>2.4.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Apollo.Configuration.Tests, PublicKey=002400000480000094000000060200000024000052534131000400000100010031b198cb1742fb12c699a60d820e6582ca8a8dbbd9383812f82bed299e06eab18931798fb14cc6ab80cda818032d15704f0e1c4aa5641b428f8a0decbfa1a30ab8d92efc7ec9cbd801f60c4b88b91c6acb704c20c6a061a7dae86601981164fb27be0c0beb3e6d5dbec1b83962a6d0b845ca09a52723237bd7083359b17830c0</_Parameter1>
+    </AssemblyAttribute>
+
+    <ProjectReference Include="..\Apollo\Apollo.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.1.1" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Apollo.Configuration.Demo": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

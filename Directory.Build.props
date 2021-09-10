@@ -1,0 +1,26 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\Apollo.snk</AssemblyOriginatorKeyFile>
+    <AssemblyVersion>2.0.0</AssemblyVersion>
+    <DebugSymbols>True</DebugSymbols>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">True</GeneratePackageOnBuild>
+    <IncludeSymbols>True</IncludeSymbols>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+    <NoWarn>1591</NoWarn>
+    <PackageTags>apollo configcenter configuration ctrip</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/ctripcorp/apollo.net/tree/dotnet-core</RepositoryUrl>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.*" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.*" PrivateAssets="All"/>
+    <PackageReference Include="Nullable" Version="1.*" PrivateAssets="All"/>
+  </ItemGroup>
+
+</Project>
