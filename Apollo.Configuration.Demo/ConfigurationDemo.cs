@@ -12,16 +12,39 @@ using System;
 
 namespace Apollo.Configuration.Demo
 {
-    internal class ConfigurationDemo
+    public class ConfigurationDemo
     {
         private const string DefaultValue = "undefined";
-        private readonly IConfiguration _config;
+        public readonly IConfiguration _config;
+        public readonly ConfigurationRoot? configRoot;
         private readonly IConfiguration _anotherConfig;
 
         public ConfigurationDemo()
         {
             var host = Host.CreateDefaultBuilder()
-                  .AddApollo()
+
+                   //.AddApollo()
+                   .ConfigureAppConfiguration((hostingContext, builder) =>
+                   {
+                       //var isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+                       //builder.AddXmlFile(!isWindows ? "/CommonConfig/CommonConfig.xml" : "C:\\CommonConfig\\CommonConfig.xml");
+                       //if (File.Exists(!isWindows ? "/CommonConfig/HtCommonConfig_Core.xml" : "C:\\CommonConfig\\HtCommonConfig_Core.xml"))
+                       //{
+                       //    builder.AddXmlFile(!isWindows ? "/CommonConfig/HtCommonConfig_Core.xml" : "C:\\CommonConfig\\HtCommonConfig_Core.xml");
+                       //}
+                       var acb = builder.AddApollo(builder.Build().GetSection("apollo"));
+
+                       //acb.ConfigRepositoryFactory.GetConfigRepository("").AddChangeListener();
+                       //.AddDefault();
+                       //foreach (var item in acb.Sources)
+                       //{
+                       //    if (item is ApolloConfigurationProvider aProvider)
+                       //    {
+                       //        //aProvider.con
+                       //    }
+                       //}
+
+                   })
                   .ConfigureServices((context, services) =>
                   {
                       services.AddOptions()
@@ -34,8 +57,11 @@ namespace Apollo.Configuration.Demo
                   .Build();
 
             _config = host.Services.GetRequiredService<IConfiguration>();
+            configRoot = _config as ConfigurationRoot;
+
             ChangeToken.OnChange(() => _config.GetReloadToken(), () =>
             {
+                Console.WriteLine($"★this._config:{_config.GetHashCode()}");
                 Console.WriteLine($"★{_config.GetReloadToken().GetHashCode()}");
             });
             _anotherConfig = _config.GetSection("a");

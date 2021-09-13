@@ -7,20 +7,21 @@ using System;
 
 namespace Apollo.Configuration.Demo
 {
-    internal class Program
+    public class Program
     {
+        public static ConfigurationDemo? demo;
         private static void Main()
         {
             LogManager.UseConsoleLogging(LogLevel.Trace);
 
             //YamlConfigAdapter.Register();
 
-            var demo = new ConfigurationDemo();
+            demo = new ConfigurationDemo();
 
             Console.WriteLine("Apollo Config Demo. Please input key to get the value. Input quit to exit.");
-           
 
-                while (true)
+
+            while (true)
             {
                 Console.Write("> ");
                 var input = Console.ReadLine();
